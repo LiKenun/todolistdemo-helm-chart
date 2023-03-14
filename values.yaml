@@ -4,14 +4,14 @@ postgres:
   database: todolistdemo
   user: postgres
   password: password
-  containerPort: 5432
+  containerPort: "5432"
 
 api:
   serviceName: api
   image: docker.io/likenun/sandbox:todolistdemo-api
-  containerPort: 8080
+  containerPort: "8080"
 
 frontend:
   serviceName: frontend
   image: docker.io/likenun/sandbox:todolistdemo-frontend
-  containerPort: 80
+  containerPort: "80"
