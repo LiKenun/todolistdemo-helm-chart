@@ -32,8 +32,8 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   selector: 
-    app: api
+    app: frontend
   ports:
-    - name: containerPort
+    - name: frontend
       port: {{ $.Values.frontend.containerPort }}
       targetPort: {{ $.Values.frontend.containerPort }}
