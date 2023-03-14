@@ -15,16 +15,16 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: "postgres:{{ $.Values.postgres.imageTag }}"
+        image: postgres
         ports:
         - containerPort: {{ $.Values.postgres.containerPort }}
-        env:
-        - name: POSTGRES_PASSWORD
-          value: {{ $.Values.postgres.password }}
-        - name: POSTGRES_USER
-          value: {{ $.Values.postgres.user }}
-        - name: POSTGRES_DB
-          value: {{ $.Values.postgres.database }}
+#        env:
+#        - name: POSTGRES_PASSWORD
+#          value: {{ $.Values.postgres.password }}
+#        - name: POSTGRES_USER
+#          value: {{ $.Values.postgres.user }}
+#        - name: POSTGRES_DB
+#          value: {{ $.Values.postgres.database }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,18 +51,18 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-          value: org.postgresql.Driver
-        - name: SPRING_DATASOURCE_URL
-          value: "jdbc:postgresql://{{ $.Values.postgres.serviceName }}.{{ $.Release.Namespace }}.svc.cluster.local:{{ $.Values.api.containerPort }}/{{ $.Values.postgres.database }}"
-        - name: SPRING_DATASOURCE_USERNAME
-          value: {{ $.Values.postgres.user }}
-        - name: SPRING_DATASOURCE_PASSWORD
-          value: {{ $.Values.postgres.password }}
-        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-          value: update
-        - name: SPRING_SQL_INIT_MODE
-          value: always
+#        - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+#          value: org.postgresql.Driver
+#        - name: SPRING_DATASOURCE_URL
+#          value: "jdbc:postgresql://{{ $.Values.postgres.serviceName }}.{{ $.Release.Namespace }}.svc.cluster.local:{{ $.Values.api.containerPort }}/{{ $.Values.postgres.database }}"
+#        - name: SPRING_DATASOURCE_USERNAME
+#          value: {{ $.Values.postgres.user }}
+#        - name: SPRING_DATASOURCE_PASSWORD
+#          value: {{ $.Values.postgres.password }}
+#        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+#          value: update
+#        - name: SPRING_SQL_INIT_MODE
+#          value: always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -84,8 +84,8 @@ spec:
         image: {{ $.Values.frontend.image }}
         ports:
         - containerPort: {{ $.Values.frontend.containerPort }}
-        env:
-        - name: API_HOST
-          value: "{{ $.Values.api.serviceName }}.{{ $.Release.Namespace }}.svc.cluster.local"
-        - name: API_PORT
-          value: {{ $.Values.api.containerPort }}
+#        env:
+#        - name: API_HOST
+#          value: "{{ $.Values.api.serviceName }}.{{ $.Release.Namespace }}.svc.cluster.local"
+#        - name: API_PORT
+#          value: {{ $.Values.api.containerPort }}

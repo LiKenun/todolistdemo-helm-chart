@@ -1,0 +1,10 @@
+rancher_min_version: 2.7.0
+
+categories:
+- Sample
+
+questions:
+- variable: docker.registry.secret
+  type: secret
+  label: Secret
+  group: "Docker"
