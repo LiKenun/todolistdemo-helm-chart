@@ -1,0 +1,27 @@
+rancher_min_version: 2.3.0
+
+categories:
+- Sample
+
+questions:
+- variable: imagePullCredentials.registry
+  type: string
+  required: true
+  default: docker.io
+  label: "The host and port for the Docker private registry"
+  group: "Docker image pull credentials"
+- variable: imagePullCredentials.email
+  type: string
+  required: true
+  label: "The e-mail for the Docker private registry"
+  group: "Docker image pull credentials"
+- variable: imagePullCredentials.username
+  type: string
+  required: true
+  label: "The user name for the Docker private registry"
+  group: "Docker image pull credentials"
+- variable: imagePullCredentials.password
+  type: password
+  required: true
+  label: "The password for the Docker private registry"
+  group: "Docker image pull credentials"
