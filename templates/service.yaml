@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Values.postgres.serviceName }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector: 
+    app: postgres
+  ports:
+    - name: postgres
+      port: {{ $.Values.postgres.containerPort }}
+      targetPort: {{ $.Values.postgres.containerPort }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Values.api.serviceName }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector: 
+    app: api
+  ports:
+    - name: api
+      port: {{ $.Values.api.containerPort }}
+      targetPort: {{ $.Values.api.containerPort }}
+      nodePort: 32000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Values.frontend.serviceName }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  selector: 
+    app: api
+  ports:
+    - name: containerPort
+      port: {{ $.Values.frontend.containerPort }}
+      targetPort: {{ $.Values.frontend.containerPort }}
